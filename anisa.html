@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffe6e1">
+<title>Untuk Anisa ♡</title>
+<style>
+:root{--peach:#ffe6e1;--pink:#f7b8c5;--rose:#d96c8a;--deep:#7f3f57;--cream:#fffaf7;--ink:#593746}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;font-family:Georgia,"Times New Roman",serif;color:var(--ink);background:radial-gradient(circle at 15% 10%,#fff9f4 0,transparent 32%),linear-gradient(145deg,#ffe9e4,#f9c9d1 55%,#f8ded7);overflow-x:hidden}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+#hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.heart{position:absolute;bottom:-40px;opacity:.65;animation:floatUp linear forwards;color:#df7897}
+@keyframes floatUp{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+.wrap{position:relative;z-index:1;width:min(680px,92%);margin:0 auto;padding:24px 0 45px}
+.card{background:rgba(255,250,247,.88);border:1px solid rgba(255,255,255,.9);border-radius:28px;padding:clamp(22px,5vw,42px);box-shadow:0 18px 55px #9d52651c;text-align:center;backdrop-filter:blur(10px)}
+.screen{display:none;animation:appear .55s ease both}.screen.active{display:block}
+@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{font:700 11px/1.5 Arial,sans-serif;letter-spacing:3px;text-transform:uppercase;color:var(--rose)}
+h1{font-size:clamp(2.1rem,8vw,4rem);line-height:1.08;margin:14px 0;color:var(--deep);font-weight:normal}
+h2{font-size:clamp(1.7rem,6vw,2.6rem);font-weight:normal;color:var(--deep);margin:12px 0 18px}
+p{font-size:1.08rem;line-height:1.8}
+.subtitle{max-width:470px;margin:0 auto 25px;color:#805a69}
+.flower{font-size:52px;margin:8px 0 16px;display:inline-block;animation:sway 3s ease-in-out infinite}
+@keyframes sway{50%{transform:rotate(8deg) scale(1.05)}}
+.btn{border:0;border-radius:999px;padding:13px 22px;background:var(--rose);color:white;box-shadow:0 7px 18px #d96c8a35;transition:transform .2s,filter .2s;margin:5px}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.03)}
+.btn.secondary{background:#f8e1e4;color:var(--deep);box-shadow:none;border:1px solid #f0c8d0}
+.btn.ghost{background:transparent;color:var(--deep);box-shadow:none;border:1px solid #e6a9b9}
+.field{width:100%;padding:14px 16px;border:1px solid #ecc3cc;border-radius:15px;background:#fffdfb;color:var(--ink);outline:none;margin:7px 0}
+.field:focus{border-color:var(--rose);box-shadow:0 0 0 3px #f7b8c533}
+textarea.field{resize:vertical;min-height:110px}
+.pinbox{max-width:310px;margin:18px auto}
+.pinbox input{text-align:center;font-size:1.5rem;letter-spacing:8px}
+.error{color:#b83258;min-height:24px;font:14px Arial,sans-serif}
+.letter{background:#fffaf4;border:1px solid #f1d8d0;border-radius:18px;padding:clamp(18px,4vw,30px);text-align:left;min-height:170px;white-space:pre-wrap;line-height:1.9;font-size:1.08rem}
+.progress{height:4px;background:#f3d6dc;border-radius:9px;overflow:hidden;margin:0 auto 22px;max-width:180px}
+.progress span{display:block;height:100%;background:var(--rose);transition:width .3s}
+.choices{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:20px 0}
+.note{font:12px/1.6 Arial,sans-serif;color:#987582;margin-top:20px}
+.music-panel{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:15px}
+.music-label{font:13px Arial,sans-serif;color:#805a69}
+#songSelect{max-width:100%;margin:0 auto 10px;cursor:pointer;text-align:center;background:#f8e1e4;color:var(--deep);border:1px solid #f0c8d0}
+.spotify-player{width:100%;max-width:420px;margin:12px auto 8px;overflow:hidden;border-radius:14px}
+.spotify-player iframe{display:block;border:0;border-radius:14px}
+#toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#7f3f57;color:white;padding:13px 20px;border-radius:15px;box-shadow:0 10px 30px #59374630;z-index:20;transition:.3s;max-width:90%;text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:10}
+footer{text-align:center;font:12px Arial,sans-serif;color:#9b7180;margin-top:20px}
+@media(max-width:420px){.card{border-radius:23px}.btn{padding:12px 17px}.music-panel{flex-direction:column}}
+</style>
+</head>
+<body>
+<div id="hearts" aria-hidden="true"></div><canvas id="confetti"></canvas><div id="toast" role="status"></div>
+<main class="wrap">
+  <section class="screen active" id="welcome">
+    <div class="card">
+      <div class="eyebrow">a little page made for you</div>
+      <div class="flower">🌷</div>
+      <h1>Hai, Anisa ♡</h1>
+      <p class="subtitle">Ada sesuatu kecil yang ingin aku tunjukkan. Nggak perlu buru-buru, baca pelan-pelan ya.</p>
+      <button class="btn" onclick="go('pin')">Buka pesan kecil ini ✨</button>
+      <div class="music-panel" style="display:block;max-width:360px;margin:18px auto 0">
+        <label class="music-label" for="songSelect" style="display:block;margin-bottom:8px">♪ Pilih lagu adek</label>
+        <select class="field" id="songSelect" aria-label="Pilih lagu adek" onchange="changeSong()">
+          <option value="41yzy7pIDZOgPL0oB3GEOp">Lamunan</option>
+          <option value="6LMgaO3C0J7VddTcu67Q4r">Ndoro Ayu</option>
+          <option value="5dTzwmeca1zmxnBAYe5bo7">Ketaton Cerito</option>
+          <option value="6fzLpwnuCSDSD4LVn5N62B">Jejantunging Kalbu</option>
+          <option value="2InRcPbunlEjQ6sGyGIjxV">Kusuma Wijaya</option>
+        </select>
+        <button class="btn ghost" id="musicToggle" type="button" onclick="toggleSpotifyMusic()">Putar musik</button>
+      </div>
+      <div class="spotify-player" id="spotifyPlayer" style="display:none">
+        <iframe id="spotifyFrame" src="https://open.spotify.com/embed/track/41yzy7pIDZOgPL0oB3GEOp?utm_source=generator" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Pemutar lagu Spotify"></iframe>
+      </div>
+      <div class="music-label" id="musicStatus">Pilih lagu dari menu, lalu tekan Putar musik ♡</div>
+      <p class="note">Pilih judul lagu, lalu tekan Putar musik. Jika lagu belum terdengar, tekan tombol ▶ di pemutar Spotify.</p>
+    </div>
+  </section>
+
+  <section class="screen" id="pin">
+    <div class="card">
+      <div class="eyebrow">just a tiny secret</div><div class="flower">🔐</div>
+      <h2>Masukkan PIN</h2>
+      <p class="subtitle">Petunjuk: tanggal spesial yang cuma kita yang tahu ♡</p>
+      <div class="pinbox"><input class="field" id="pinInput" type="password" inputmode="numeric" maxlength="8" placeholder="••••" aria-label="PIN rahasia"></div>
+      <div class="error" id="pinError"></div>
+      <button class="btn" onclick="checkPin()">Buka surat ♡</button>
+      <button class="btn secondary" onclick="go('welcome')">Kembali</button>
+      <p class="note">PIN dapat kamu ubah di bagian pengaturan pada kode HTML sebelum dibagikan.</p>
+    </div>
+  </section>
+
+  <section class="screen" id="letterScreen">
+    <div class="card">
+      <div class="eyebrow">a letter for you</div><div class="flower">💌</div>
+      <div class="progress"><span id="progressBar" style="width:25%"></span></div>
+      <h2 id="letterTitle">Sedikit cerita...</h2>
+      <div class="letter" id="letterText"></div>
+      <p id="letterCount" class="note">Bagian 1 dari 4</p>
+      <button class="btn" id="nextLetter" onclick="nextLetter()">Next? →</button>
+      <button class="btn secondary" onclick="go('welcome')">Kembali</button>
+    </div>
+  </section>
+
+  <section class="screen" id="question">
+    <div class="card">
+      <div class="eyebrow">one little question</div><div class="flower">🩷</div>
+      <h2>Anisa, boleh aku tanya sesuatu?</h2>
+      <p class="subtitle">Aku senang mengenalmu. Aku ingin tahu apakah kamu juga mau mencoba menjalani cerita ini bersamaku, pelan-pelan dan saling mengenal lebih dalam.</p>
+      <h2 style="font-size:clamp(1.5rem,5vw,2.1rem)">Mau jadi pasangan aku? ♡</h2>
+      <div class="choices"><button class="btn" onclick="sayYes()">Yes! 💗</button><button class="btn secondary" id="noBtn" onclick="sayMaybe()">Aku mau pikir-pikir dulu</button></div>
+      <p class="note">Apa pun jawabanmu, nggak apa-apa. Aku tetap menghargai perasaanmu.</p>
+    </div>
+  </section>
+
+  <section class="screen" id="datePlan">
+    <div class="card">
+      <div class="eyebrow">a little message from the heart</div><div class="flower">🌸</div>
+      <h2>Pesan dan Kesan</h2>
+      <p class="subtitle">Kalau kamu nyaman, tuliskan pesan dan kesanmu di sini. Aku ingin tahu apa yang kamu rasakan dan pikirkan. ♡</p>
+      <textarea class="field" id="dateIdea" placeholder="Pesan: tuliskan pesan yang ingin kamu sampaikan..."></textarea>
+      <textarea class="field" id="dateWhen" placeholder="Kesan: bagaimana kesanmu selama mengenal aku?"></textarea>
+      <textarea class="field" id="dateNote" placeholder="Hal lain yang ingin kamu ceritakan (opsional)"></textarea>
+      <button class="btn" onclick="savePlan()">Simpan pesan ♡</button>
+      <button class="btn secondary" onclick="go('question')">Kembali</button>
+      <p class="note">Pesan dan kesan ini hanya ditampilkan di halaman ini, tidak dikirim ke siapa pun.</p>
+    </div>
+  </section>
+
+  <section class="screen" id="final">
+    <div class="card">
+      <div class="eyebrow">one more thing</div><div class="flower">💐</div>
+      <h1>Makasih, Anisa!</h1>
+      <p class="subtitle" id="finalMessage">Terima kasih sudah membaca sampai akhir. Semoga hal-hal baik selalu menemukan jalan ke kamu. ♡</p>
+      <div class="letter" id="planSummary" style="display:none;text-align:center"></div>
+      <p class="subtitle" style="margin:18px auto 12px;font-weight:bold;color:var(--rose)">Jangan lupa SS ya 😘</p>
+      <button class="btn" onclick="burstConfetti();showToast('Satu peluk hangat dari jauh untuk harimu ♡')">Kirim banyak hati 💗</button>
+      <button class="btn secondary" onclick="go('welcome')">Baca lagi</button>
+    </div>
+  </section>
+  <footer>dibuat dengan hati, khusus untuk Anisa ♡</footer>
+</main>
+<script>
+/* ================= PENGATURAN WEBSITE =================
+   Ganti PIN_RAHASIA dengan tanggal spesial kalian.
+   Contoh: "1410" untuk 14 Oktober, atau "14082026".
+   Samakan PIN dengan petunjuk yang ingin kamu berikan.
+*/
+const PIN_RAHASIA = "1211";
+const namaPanggilan = "Anisa";
+
+/* Ubah teks surat di bawah ini sesuai cerita kalian. */
+const letters = [
+  {title:"Hai, Anisa...",text:"Aku cuma mau bilang kalau aku senang bisa mengenal kamu. Kadang hal sederhana seperti ngobrol sama kamu bisa bikin hari terasa lebih menyenangkan. ♡"},
+  {title:"Hal kecil yang berarti",text:"Aku suka saat kita bisa cerita tentang hal-hal kecil, bercanda, dan saling mendengarkan. Kita memang masih punya banyak hal untuk dipelajari tentang satu sama lain."},
+  {title:"Nggak harus buru-buru",text:"Aku nggak berharap semuanya harus sempurna. Aku ingin kita bisa saling jujur, saling menghargai, dan tetap jadi diri sendiri. Kita jalani pelan-pelan saja, ya."},
+  {title:"Sebelum lanjut...",text:"Terima kasih sudah meluangkan waktu membaca pesan kecil ini. Ada satu pertanyaan yang ingin aku tanyakan ke kamu... ♡"}
+];
+let letterIndex=0, musicObjectUrl=null, toastTimer=null;
+const $=id=>document.getElementById(id);
+function go(id){
+ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+ $(id).classList.add('active'); window.scrollTo({top:0,behavior:'smooth'});
+ if(id==='letterScreen' && !$('letterText').textContent) renderLetter();
+}
+function checkPin(){
+ const val=$('pinInput').value.trim();
+ if(val===PIN_RAHASIA){$('pinError').textContent='';$('pinInput').value='';letterIndex=0;renderLetter();go('letterScreen');}
+ else {$('pinError').textContent='Salah, tanggal lahir adek! ♡';$('pinInput').value='';$('pinInput').focus();}
+}
+$('pinInput').addEventListener('keydown',e=>{if(e.key==='Enter')checkPin()});
+function renderLetter(){
+ const item=letters[letterIndex];$('letterTitle').textContent=item.title;$('letterText').textContent=item.text;
+ $('letterCount').textContent=`Bagian ${letterIndex+1} dari ${letters.length}`;
+ $('progressBar').style.width=((letterIndex+1)/letters.length*100)+'%';
+ $('nextLetter').textContent=letterIndex===letters.length-1?'Lanjut ya ♡':'Next? →';
+}
+function nextLetter(){if(letterIndex<letters.length-1){letterIndex++;renderLetter()}else go('question')}
+function sayYes(){burstConfetti();go('datePlan');showToast('Yay! Terima kasih sudah jujur dengan perasaanmu ♡')}
+function sayMaybe(){showToast('Nggak apa-apa, ambil waktu yang kamu butuhkan ya ♡')}
+function savePlan(){
+ const idea=$('dateIdea').value.trim(), when=$('dateWhen').value.trim(), note=$('dateNote').value.trim();
+ if(!idea && !when && !note){showToast('Tulis pesan atau kesan terlebih dahulu, ya ♡');$('dateIdea').focus();return}
+ $('planSummary').style.display='block';
+ $('planSummary').textContent='Pesan: '+idea+(when?'\nKesan: '+when:'')+(note?'\nCatatan: '+note:'');
+ $('finalMessage').textContent='Terima kasih sudah berbagi pesan dan kesan. Jawabanmu sudah ditampilkan di halaman ini. ♡';
+ go('final');burstConfetti();showToast('Pesan dan kesan berhasil ditampilkan! ♡');
+}
+function showToast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),3000)}
+const songNames = {
+  "41yzy7pIDZOgPL0oB3GEOp": "Lamunan",
+  "6LMgaO3C0J7VddTcu67Q4r": "Ndoro Ayu",
+  "5dTzwmeca1zmxnBAYe5bo7": "Ketaton Cerito",
+  "6fzLpwnuCSDSD4LVn5N62B": "Jejantunging Kalbu",
+  "2InRcPbunlEjQ6sGyGIjxV": "Kusuma Wijaya"
+};
+function changeSong(){
+  const id=$('songSelect').value;
+  const name=songNames[id]||'Lagu pilihan adek';
+  $('spotifyFrame').src='https://open.spotify.com/embed/track/'+id+'?utm_source=generator';
+  $('musicToggle').textContent='Putar musik';
+  $('musicStatus').textContent=name+' dipilih ♡ Tekan Putar musik untuk mulai.';
+}
+function toggleSpotifyMusic(){
+  const id=$('songSelect').value;
+  const name=songNames[id]||'Lagu pilihan adek';
+  $('spotifyPlayer').style.display='block';
+  $('spotifyFrame').src='https://open.spotify.com/embed/track/'+id+'?utm_source=generator';
+  $('musicToggle').textContent='Putar musik di Spotify';
+  $('musicStatus').textContent='Lagu '+name+' siap diputar ♡ Tekan ▶ pada pemutar Spotify.';
+  $('spotifyPlayer').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+/* Hati melayang */
+function makeHeart(){
+ const h=document.createElement('span');h.className='heart';h.textContent=['♡','♥','✿','💕'][Math.floor(Math.random()*4)];
+ h.style.left=Math.random()*100+'%';h.style.fontSize=(14+Math.random()*18)+'px';
+ const duration=7+Math.random()*7;h.style.animationDuration=duration+'s';$('hearts').appendChild(h);
+ setTimeout(()=>h.remove(),duration*1000);
+}
+setInterval(makeHeart,850);for(let i=0;i<7;i++)setTimeout(makeHeart,i*250);
+/* Confetti canvas */
+const canvas=$('confetti'),ctx=canvas.getContext('2d');let pieces=[],animating=false;
+function resizeCanvas(){canvas.width=window.innerWidth*devicePixelRatio;canvas.height=window.innerHeight*devicePixelRatio;ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0)}
+window.addEventListener('resize',resizeCanvas);resizeCanvas();
+function burstConfetti(){
+ const colors=['#e87998','#f7b8c5','#f5c879','#fff5e9','#c47d98'];
+ for(let i=0;i<140;i++)pieces.push({x:innerWidth/2+(Math.random()-.5)*150,y:innerHeight*.35+(Math.random()-.5)*60,vx:(Math.random()-.5)*9,vy:-3-Math.random()*8,size:4+Math.random()*6,rot:Math.random()*6,vr:(Math.random()-.5)*.2,color:colors[Math.floor(Math.random()*colors.length)],life:100+Math.random()*70});
+ if(!animating){animating=true;requestAnimationFrame(drawConfetti)}
+}
+function drawConfetti(){
+ ctx.clearRect(0,0,innerWidth,innerHeight);
+ pieces=pieces.filter(p=>p.life>0);
+ pieces.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.13;p.rot+=p.vr;p.life--;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle=p.color;ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*.65);ctx.restore()});
+ if(pieces.length)requestAnimationFrame(drawConfetti);else{animating=false;ctx.clearRect(0,0,innerWidth,innerHeight)}
+}
+</script>
+</body>
+</html>
